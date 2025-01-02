@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import {motion} from 'framer-motion'
 import { Edit, Search, Trash2 } from 'lucide-react'
 import { userData } from '../../config'
+import { div } from 'framer-motion/client'
+import { Document, Page, PDFDownloadLink, StyleSheet, Text, View } from '@react-pdf/renderer'
 
 const Table = () => {
     const [searchTerm,setSearchTerm]=useState('')
@@ -12,6 +14,77 @@ const Table = () => {
     const filtered=userData.filter((product)=> product.name.toLowerCase().includes(value)||product.email.toLowerCase().includes(value))
     SetFilteredProduct(filtered)
     }
+    const generatePDFDocument = () => {
+        const styles = StyleSheet.create({
+            page: {
+                padding: 30,
+                backgroundColor: '#f2f2f2',
+            },
+            title: {
+                fontSize: 18,
+                marginBottom: 20,
+                fontWeight: 'bold',
+                textAlign: 'center',
+            },
+            table: {
+                display: 'flex',
+                flexDirection: 'column',
+                width: '100%',
+            },
+            tableRow: {
+                display: 'flex',
+                flexDirection: 'row',
+                borderBottom: '1px solid #ddd',
+                paddingVertical: 5,
+            },
+            tableHeader: {
+                flex: 1,
+                fontWeight: 'bold',
+                backgroundColor: '#333',
+                color: '#fff',
+                textAlign: 'center',
+                padding: 5,
+            },
+            tableCell: {
+                flex: 1,
+                textAlign: 'center',
+                padding: 5,
+            },
+            tableBody: {
+                backgroundColor: '#fff',
+            },
+        })
+    
+        return (
+            <Document>
+                <Page style={styles.page}>
+                    <Text style={styles.title}>User Report</Text>
+                    <View style={styles.table}>
+                        {/* Table Header */}
+                        <View style={styles.tableRow}>
+                            <Text style={styles.tableHeader}>Name</Text>
+                            <Text style={styles.tableHeader}>Email</Text>
+                            <Text style={styles.tableHeader}>Role</Text>
+                            <Text style={styles.tableHeader}>Status</Text>
+                        </View>
+    
+                        {/* Table Rows */}
+                        <View style={styles.tableBody}>
+                            {filteredProduct.map((user) => (
+                                <View key={user.id} style={styles.tableRow}>
+                                    <Text style={styles.tableCell}>{user.name}</Text>
+                                    <Text style={styles.tableCell}>{user.email}</Text>
+                                    <Text style={styles.tableCell}>{user.role}</Text>
+                                    <Text style={styles.tableCell}>{user.status}</Text>
+                                </View>
+                            ))}
+                        </View>
+                    </View>
+                </Page>
+            </Document>
+        )
+    }
+    
   return (
     <motion.div className='bg-gray-800 bg-opacity-50 rounded-lg mb-8 border border-gray-700 p-6 ' initial={{opacity:0,y:20}} animate={{opacity:1, y:0}} transition={{delay:0.3}}>
        <div className='flex justify-between items-center mb-6'>
@@ -82,6 +155,16 @@ const Table = () => {
             }
             </tbody>
         </table>
+       </div>
+
+       <div className='flex justify-end'>
+        <PDFDownloadLink document={generatePDFDocument()} fileName='user-report.pdf'>
+        <button
+                            className="bg-indigo-600 text-white py-2 px-4 rounded-lg hover:bg-indigo-500"    
+                        >
+                             Download PDF
+                        </button>
+        </PDFDownloadLink>
        </div>
     </motion.div>
   )

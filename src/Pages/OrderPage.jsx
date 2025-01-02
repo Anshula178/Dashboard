@@ -42,7 +42,6 @@ const OrderPage = () => {
 					<DailyOrders />
 					<OrderDistribution />
 				</div>
-
 				<OrdersTable />
 			</main>
 		</div>
