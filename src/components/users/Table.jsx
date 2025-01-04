@@ -60,7 +60,7 @@ const Table = () => {
                 <Page style={styles.page}>
                     <Text style={styles.title}>User Report</Text>
                     <View style={styles.table}>
-                        {/* Table Header */}
+                       
                         <View style={styles.tableRow}>
                             <Text style={styles.tableHeader}>Name</Text>
                             <Text style={styles.tableHeader}>Email</Text>
@@ -68,7 +68,7 @@ const Table = () => {
                             <Text style={styles.tableHeader}>Status</Text>
                         </View>
     
-                        {/* Table Rows */}
+                        
                         <View style={styles.tableBody}>
                             {filteredProduct.map((user) => (
                                 <View key={user.id} style={styles.tableRow}>
