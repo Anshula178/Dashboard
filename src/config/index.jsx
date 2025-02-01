@@ -3,37 +3,37 @@ import { BarChart2, DollarSign, Settings, ShoppingBag, ShoppingCart, TrendingUp,
   export const SIDEBAR_ITEMS=[
         {name:"Overview",
             icon:BarChart2,
-            color:'#6366f1',
+            color:'#FFFFFF',
             path:'/'
         },
         {name:"Products",
             icon:ShoppingBag,
-            color:'#8B5CF6',
+            color:'#FFFFFF',
             path:'/products'
         },
         {name:"Users",
             icon:User,
-            color:'#EC4899',
+            color:'#FFFFFF',
             path:'/users'
         },
         {name:"Sales",
             icon:DollarSign,
-            color:'#10B981',
+            color:'#FFFFFF',
             path:'/sales'
         },
         {name:"Orders",
             icon:ShoppingCart,
-            color:'#F59E0B',
+            color:'#FFFFFF',
             path:'/orders'
         },
         {name:"Analytics",
             icon:TrendingUp,
-            color:'#3B82F6',
+            color:'#FFFFFF',
             path:'/analytics'
         },
         {name:"Settings",
             icon:Settings,
-            color:'#6EE7B7',
+            color:'#FFFFFF',
             path:'/settings'
         },
     ]

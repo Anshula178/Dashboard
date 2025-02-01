@@ -6,12 +6,22 @@ import { PRODUCT_DATA } from '../../config'
 const Table = () => {
 const [searchTerm,setSearchTerm]=useState('')
 const [filteredProduct,SetFilteredProduct]=useState(PRODUCT_DATA)
+const [items, setItems] = useState(() => {
+  const savedItems = localStorage.getItem('items');
+  return savedItems ? JSON.parse(savedItems) : [];
+});
+
 const handleSearch=(e)=>{
     const value=e.target.value.toLowerCase();
     setSearchTerm(value)
     const filtered=PRODUCT_DATA.filter((product)=>product.name.toLowerCase().includes(value)||product.category.toLowerCase().includes(value));
     SetFilteredProduct(filtered)
 
+}
+const handleDelete=(id)=>{
+  SetFilteredProduct((prev)=>{
+    return prev.filter(product=> product.id!==id)
+  })
 }
 
   return (
@@ -61,10 +71,10 @@ const handleSearch=(e)=>{
 								<td className='px-6 py-4 whitespace-nowrap text-sm text-gray-300'>{product.stock}</td>
 								<td className='px-6 py-4 whitespace-nowrap text-sm text-gray-300'>{product.sales}</td>
 								<td className='px-6 py-4 whitespace-nowrap text-sm text-gray-300'>
-									<button className='text-indigo-400 hover:text-indigo-300 mr-2' >
+									<button className='text-indigo-400 hover:text-indigo-300 mr-2'  >
 										<Edit size={18} />
 									</button>
-									<button className='text-red-400 hover:text-red-300' >
+									<button className='text-red-400 hover:text-red-300' onClick={()=>handleDelete(product.id)} >
 										<Trash2 size={18} />
 									</button>
 								</td>

@@ -16,7 +16,7 @@ const Sidebar = () => {
     >
       <div className="h-full bg-gray-800 bg-opacity-50 backdrop-blur-md p-4 flex flex-col border-r border-gray-700">
         <div className="flex justify-between items-center">
-          <h1 className={`${isSidebarOpen ? 'block' : 'hidden'} text-lg font-bold text-white`}>
+          <h1 className={`${isSidebarOpen ? 'block' : 'hidden'} pl-4 text-lg font-bold text-white`}>
             SmartSell
           </h1>
           <motion.button
